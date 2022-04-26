@@ -6,7 +6,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    outline: 1px solid red;
 }
 
 :root {
@@ -35,9 +34,6 @@ html {
     display: flex;
 }
 
-.horizontally-center {
-    margin: 0 auto;
-}
 
 .display-none {
     display: none;
@@ -56,9 +52,7 @@ a {
     color: inherit;
 }
 
-img {
-    max-width: 100%;
-}
+
 
 //body
 @mixin for-mobile-view {
@@ -74,6 +68,7 @@ img {
 }
 
 body {
+    overflow-x: hidden;
     background-color: var(--Almost-White);
 }
 
@@ -81,7 +76,9 @@ body {
 h1 {
     font-size: calc(max(1.5rem, 5vw));
 
-    @include for-mobile-view {
+
+    @include for-mobile-view() {
+        margin: 1rem 0;
         text-align: center;
     }
 
@@ -89,30 +86,51 @@ h1 {
         & span {
             display: block;
         }
+
+
     }
 }
 
 p {
     color: var(--Medium-Gray);
+    margin-bottom: 1rem;
+    line-height: 1.6;
 
     @include for-mobile-view() {
         text-align: center;
-        min-width: 35ch;
+    }
+
+    @include for-desktop-view() {
+        max-width: 45ch;
     }
 }
 
-.content-wrapper {
-    @include for-desktop-view() {
-        grid-auto-flow: column;
-        grid-auto-columns: minmax(0, 1fr);
-    }
-}
+
 
 //nav
-.hamburger-menu-icon {
-    @include for-mobile-view() {
-        float: right;
+@mixin on-hover-dark {
+    &:hover {
+        color: var(--Almost-Black);
     }
+}
+
+.top-banner-wrapper {
+    @include for-desktop-view() {
+        display: flex;
+        align-items: center;
+        font-size: .75rem;
+    }
+
+    margin: 1rem 0;
+}
+
+.logo-home {
+    margin-left: .5rem;
+}
+
+.hamburger-menu-icon {
+    float: right;
+    margin-right: .5rem;
 }
 
 .nav-bar-content {
@@ -122,9 +140,17 @@ p {
         }
 
         @include for-desktop-view() {
-            gap: 5rem;
+            display: inline-flex;
+            gap: 2rem;
+            margin-left: 3.5rem;
+        }
+
+        * {
+            color: var(--Medium-Gray);
+            line-height: 2;
         }
     }
+
 }
 
 .overlay-content {
@@ -149,9 +175,6 @@ p {
         }
     }
 
-    @include for-desktop-view() {
-        display: inline;
-    }
 }
 
 .drop-down {
@@ -167,11 +190,7 @@ p {
         padding: 1rem;
         border-radius: 1rem;
         box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.05);
-
-    }
-
-    & li {
-        line-height: 2;
+        z-index: 1;
     }
 }
 
@@ -206,16 +225,30 @@ p {
     @include drop-down-menu();
 }
 
+
 .close-menu {
     margin-left: auto;
     margin-bottom: 3rem;
 }
 
-.register {
-    border: 2px solid var(--Medium-gray);
-}
 
-.login-or-register {}
+.login-or-register {
+    color: var(--Medium-Gray);
+    margin-left: auto;
+    margin-right: .5rem;
+    align-items: center;
+    gap: 1.5rem;
+
+    .register {
+        padding: .75rem;
+        border-radius: .75rem;
+        border: 2px solid var(--Medium-Gray);
+
+        @include for-desktop-view() {
+            @include on-hover-dark()
+        }
+    }
+}
 
 //header
 .mobile-view {
@@ -234,17 +267,42 @@ p {
     }
 }
 
-.content-wrapper {}
+.content-wrapper {
 
-//main
-main {
     @include for-desktop-view() {
-        grid-column-start: 1;
-        margin: auto 0;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(0, 1fr);
+        padding: 0 5rem 0 7.5rem;
+        gap: 5rem;
     }
 }
 
+.header-img {
+    max-width: 100%;
+}
+
+//main
+main {
+    flex-direction: column;
+    position: relative;
+
+    @include for-desktop-view() {
+        justify-content: center;
+        grid-column-start: 1;
+    }
+
+    @include for-mobile-view() {
+        padding: 0 1rem;
+    }
+}
+
+.main_first-section {
+    margin: auto 0;
+}
+
 .learn-more-cta {
+    cursor: pointer;
     font-size: inherit;
     font-family: inherit;
     background-color: var(--Almost-Black);
@@ -252,12 +310,30 @@ main {
     color: var(--Almost-White);
     padding: 1rem;
     border-radius: .8rem;
+
+    @include for-desktop-view() {
+        align-self: flex-start;
+    }
+
+    @include for-mobile-view() {
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
 }
 
 // footer
 .footer_logos {
     align-items: center;
+    width: 100%;
     gap: 1rem;
+
+    @media screen and (min-width: 920px) {
+        & {
+            position: absolute;
+            bottom: 0;
+        }
+
+    }
 
     & img {
         width: 100%;

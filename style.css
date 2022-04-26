@@ -6,7 +6,6 @@
           box-sizing: border-box;
   margin: 0;
   padding: 0;
-  outline: 1px solid red;
 }
 
 :root {
@@ -35,10 +34,6 @@ html {
   display: flex;
 }
 
-.horizontally-center {
-  margin: 0 auto;
-}
-
 .display-none {
   display: none;
 }
@@ -56,11 +51,8 @@ a {
   color: inherit;
 }
 
-img {
-  max-width: 100%;
-}
-
 body {
+  overflow-x: hidden;
   background-color: var(--Almost-White);
 }
 
@@ -70,6 +62,7 @@ h1 {
 
 @media screen and (max-width: 750px) {
   h1 {
+    margin: 1rem 0;
     text-align: center;
   }
 }
@@ -82,26 +75,45 @@ h1 {
 
 p {
   color: var(--Medium-Gray);
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
 @media screen and (max-width: 750px) {
   p {
     text-align: center;
-    min-width: 35ch;
   }
 }
 
 @media screen and (min-width: 750px) {
-  .content-wrapper {
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(0, 1fr);
+  p {
+    max-width: 45ch;
   }
 }
 
-@media screen and (max-width: 750px) {
-  .hamburger-menu-icon {
-    float: right;
+.top-banner-wrapper {
+  margin: 1rem 0;
+}
+
+@media screen and (min-width: 750px) {
+  .top-banner-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: .75rem;
   }
+}
+
+.logo-home {
+  margin-left: .5rem;
+}
+
+.hamburger-menu-icon {
+  float: right;
+  margin-right: .5rem;
 }
 
 @media screen and (max-width: 750px) {
@@ -115,8 +127,17 @@ p {
 
 @media screen and (min-width: 750px) {
   .nav-bar-content nav {
-    gap: 5rem;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    gap: 2rem;
+    margin-left: 3.5rem;
   }
+}
+
+.nav-bar-content nav * {
+  color: var(--Medium-Gray);
+  line-height: 2;
 }
 
 @media screen and (max-width: 750px) {
@@ -143,12 +164,6 @@ p {
   }
 }
 
-@media screen and (min-width: 750px) {
-  .overlay-content {
-    display: inline;
-  }
-}
-
 @media screen and (max-width: 750px) {
   .drop-down li {
     margin-left: .75rem;
@@ -163,11 +178,8 @@ p {
     border-radius: 1rem;
     -webkit-box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.05);
             box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1;
   }
-}
-
-.drop-down li {
-  line-height: 2;
 }
 
 .features,
@@ -206,8 +218,26 @@ p {
   margin-bottom: 3rem;
 }
 
-.register {
-  border: 2px solid var(--Medium-gray);
+.login-or-register {
+  color: var(--Medium-Gray);
+  margin-left: auto;
+  margin-right: .5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5rem;
+}
+
+.login-or-register .register {
+  padding: .75rem;
+  border-radius: .75rem;
+  border: 2px solid var(--Medium-Gray);
+}
+
+@media screen and (min-width: 750px) {
+  .login-or-register .register:hover {
+    color: var(--Almost-Black);
+  }
 }
 
 @media screen and (min-width: 750px) {
@@ -229,14 +259,50 @@ p {
 }
 
 @media screen and (min-width: 750px) {
-  main {
-    -ms-grid-column: 1;
-        grid-column-start: 1;
-    margin: auto 0;
+  .content-wrapper {
+    display: -ms-grid;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    padding: 0 5rem 0 7.5rem;
+    gap: 5rem;
   }
 }
 
+.header-img {
+  max-width: 100%;
+}
+
+main {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+
+@media screen and (min-width: 750px) {
+  main {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-grid-column: 1;
+        grid-column-start: 1;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  main {
+    padding: 0 1rem;
+  }
+}
+
+.main_first-section {
+  margin: auto 0;
+}
+
 .learn-more-cta {
+  cursor: pointer;
   font-size: inherit;
   font-family: inherit;
   background-color: var(--Almost-Black);
@@ -246,11 +312,33 @@ p {
   border-radius: .8rem;
 }
 
+@media screen and (min-width: 750px) {
+  .learn-more-cta {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .learn-more-cta {
+    margin: 0 auto;
+    margin-bottom: 2rem;
+  }
+}
+
 .footer_logos {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
   gap: 1rem;
+}
+
+@media screen and (min-width: 920px) {
+  .footer_logos {
+    position: absolute;
+    bottom: 0;
+  }
 }
 
 .footer_logos img {
